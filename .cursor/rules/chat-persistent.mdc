@@ -1,0 +1,33 @@
+---
+description: 継続蓄積ノート（chats/persistent）の作成・編集ルール
+globs: chats/persistent/**/*.md
+alwaysApply: false
+---
+
+# Chat Persistent
+
+`chats/persistent/` は長期保持するナレッジ。構造化して記録する。
+
+## frontmatter 必須値
+
+- `tags`: `chat`, `persistent` を含む
+- `status`: 通常 `active`（完了後は `archived`）
+
+## 運用
+
+- 見出し（`## 概要` / `## 要点` / `## 関連リンク`）で構造化する
+- 関連ノートがあれば `related` に wikilink パスを追記（例: `chats/persistent/2026-07-01-foo.md`）
+- 他の persistent ノートを横断参照して文脈を補完してよい
+- 編集時は `updated` を当日の日付に更新
+
+## アーカイブ
+
+完了・参照頻度が下がったノートはアーカイブする。
+
+1. `status` を `archived` に変更
+2. ファイルを `chats/persistent/_archive/` へ移動（フォルダがなければ作成）
+3. 他ノートの `related` 参照はパスを更新するか、wikilink が追従するよう移動のみで済むか確認
+
+アーカイブ後も wikilink は維持する。削除は行わない（履歴として保持）。
+
+テンプレート参照: `templates/chat-persistent.md`

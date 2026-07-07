@@ -1,0 +1,73 @@
+---
+description: Obsidian vault の基本方針とフォルダ構成
+alwaysApply: true
+---
+
+# Vault Core
+
+この vault は Cursor Cloud Agent / Gemini / ChatGPT 等のチャット作業場と Obsidian ナレッジベースの両方として使う。
+
+**一言:** Cursor がフロント（会話・加工・分析）、Obsidian vault がバックエンド（蓄積・リンク・横断整理）。
+
+## フォルダ役割
+
+| フォルダ | 用途 |
+|---------|------|
+| `chats/temp/` | 一時チャット。短命・削除可 |
+| `chats/persistent/` | 継続蓄積。長期保持・リンク・分析対象 |
+| `analysis/` | persistent の横断分析・要約・調査結果 |
+| `profile/` | 本人属性・好み・文脈（チャットログと分離） |
+| `templates/` | Templater テンプレート（参照用） |
+| `assets/` | 添付画像など |
+
+## 基本ルール
+
+- 新規 `.md` 作成時は必ず YAML frontmatter を付与する（詳細は `obsidian-frontmatter` ルール参照）
+- ファイル名: `YYYY-MM-DD-短いトピック.md`（analysis は `YYYY-MM-DD-analysis-トピック.md`）
+- トピック語彙: **英語ケバブケース推奨**（例: `vault-design`, `api-research`）。日本語トピックも可だが、同一 vault 内で混在を最小化する
+- temp の自動生成時のみ `YYYY-MM-DD-HHmmss` を許容（promote 時にトピック名へリネーム）
+- 日本語で応答する
+- **この vault（cursor_obsidian）以外のディレクトリは編集しない**
+
+## ワークフロー
+
+- 新規チャット → `chats/temp/` に **無言で自動作成**（確認不要、命名は `YYYY-MM-DD-HHmmss`）
+- 保存指示がなければ temp は **セッション終了時に削除**（使い捨て。詳細は `chat-temp` ルール）
+- 「蓄積して」「保存して」→ `chats/persistent/` へ昇格（promote）
+- 「分析して」→ `chats/persistent/` を横断検索し `analysis/` に結果を作成
+
+## 運用方針
+
+### モデル使い分け
+
+| 用途 | 推奨 |
+|------|------|
+| 日常の会話・保存・promote | Auto |
+| 横断分析（`analysis/` 作成） | Opus |
+
+### 検索・再参照
+
+- 過去ノートの検索は Composer（Agent）が担う。タグ・`related`・ファイル名で絞り込む
+- 再参照時は `analysis/` → persistent の要点 → 必要なら詳細、の順で読む（トークン節約）
+- 新規チャット・分析時は `profile/user.md` を参照する
+
+### マルチソース
+
+- Cursor: ルールに従い自動で保存・昇格・分析が可能
+- Gemini / ChatGPT 等: 手動コピペで `chats/temp/` に保存し、`source` を適切に設定
+
+### ルールの育て方
+
+- 繰り返し同じ指示をしている場合のみ `.cursor/rules/` にカスタムルールを追加
+- 1ルール1関心。`alwaysApply: true` は最小限にし、用途別は glob で限定
+
+### Git 運用
+
+- ブランチ・コミット・PR の基準は `git-workflow` ルールに従う
+- public リポジトリ: `profile/user.md` はコミットしない（`user.example.md` をコピーして使う）
+
+### assets
+
+- 添付は `assets/` に保存（Obsidian の `attachmentFolderPath` と一致）
+- 命名: `YYYY-MM-DD-短い説明.ext` または元ノート名を接頭辞に（例: `vault-design-diagram.png`）
+- ノートからは Markdown リンクで参照（`![[assets/...]]` または相対パス）

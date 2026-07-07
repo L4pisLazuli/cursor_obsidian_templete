@@ -1,0 +1,51 @@
+---
+description: Git ブランチ・コミット・PR の運用ルール
+alwaysApply: false
+globs: .gitignore,.gitattributes,README.md,.cursor/rules/**
+---
+
+# Git Workflow
+
+この vault の Git 運用方針。public リポジトリとして一貫性を保つ。
+
+## ブランチ命名
+
+| 種別 | 形式 | 例 |
+|------|------|-----|
+| 機能・再構成 | `feat/短い説明` | `feat/git-workflow-rules` |
+| 修正 | `fix/短い説明` | `fix/broken-related-links` |
+| ドキュメント | `docs/短い説明` | `docs/readme-public` |
+
+`main` がデフォルトブランチ。日常のノート追記は `main` 直コミット可。
+
+## コミット粒度
+
+- **1 論理変更 = 1 コミット**（ルール追加とノート追記を混ぜない）
+- メッセージは英語または日本語で「何を・なぜ」を簡潔に
+- 例: `add git-workflow rule for public release`, `promote vault-design chat to persistent`
+
+## PR を作る基準
+
+| 変更内容 | 運用 |
+|---------|------|
+| ノート追記・promote・analysis 追加 | `main` 直コミット |
+| `.cursor/rules/` の追加・変更 | ブランチ + PR 推奨 |
+| フォルダ再構成・アーカイブ一括移動 | ブランチ + PR 必須 |
+| `.gitignore` / 公開向け設定変更 | ブランチ + PR 推奨 |
+
+PR 本文には変更概要と影響範囲を記載する。
+
+## コミット前チェック
+
+- `profile/user.md` がステージされていないか確認（個人情報）
+- `.obsidian/workspace*.json` が含まれていないか確認
+- frontmatter 必須キーが欠けていないか確認
+
+## リンク整合
+
+- `related` や wikilink を変更したら、参照先が存在するか確認
+- 月次または大きな再構成後にリンク切れを手動確認（Obsidian のバックリンク表示でも可）
+
+## 改行コード
+
+- `.gitattributes` で LF 統一。Windows でもコミットは LF

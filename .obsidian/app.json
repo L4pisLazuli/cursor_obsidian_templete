@@ -1,0 +1,8 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "chats/temp",
+  "attachmentFolderPath": "assets",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "showFrontmatter": true
+}

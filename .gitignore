@@ -1,0 +1,20 @@
+# Obsidian — 端末・セッション固有
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/plugins/
+
+# Obsidian ゴミ箱
+.trash/
+
+# 個人プロファイル（`profile/user.example.md` をコピーして `user.md` として使う）
+profile/user.md
+
+# OS 固有
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# エディタ
+*.swp
+*~

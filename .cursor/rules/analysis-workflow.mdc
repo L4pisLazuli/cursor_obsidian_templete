@@ -1,0 +1,38 @@
+---
+description: 横断分析ノート（analysis）の作成・編集ルール
+globs: analysis/**/*.md
+alwaysApply: false
+---
+
+# Analysis Workflow
+
+`analysis/` は `chats/persistent/` の横断分析・要約・比較結果を格納する。
+
+## 新規分析の手順
+
+1. `chats/persistent/` 内をトピック・タグ・`related` で検索
+2. `analysis/YYYY-MM-DD-analysis-トピック.md` を新規作成
+3. 参照元ノートを `related` に列挙
+4. `tags` に `analysis` + 分析トピックタグを付与
+
+## frontmatter 必須値
+
+- `tags`: `analysis` を含む
+- `related`: 参照した persistent ノートのパス一覧
+- `sources_updated`: 参照元ノートの `updated` を確認した最終日（`YYYY-MM-DD`）。分析の鮮度管理用
+
+## 鮮度管理
+
+- 既存 analysis を編集する前に、`related` 先の `updated` と自身の `sources_updated` を比較する
+- 参照元が更新されていたら分析本文を見直し、`sources_updated` を当日に更新する
+- 参照元の変更が軽微で分析に影響しない場合は、`sources_updated` のみ更新してよい
+
+## ノート構成
+
+- `## 分析対象` — 何を分析したか
+- `## 要約` — 横断的な要約
+- `## 洞察` — 発見・パターン
+- `## 未解決事項` — 残課題
+- `## 参照元` — wikilink で元ノートへリンク
+
+テンプレート参照: `templates/analysis.md`

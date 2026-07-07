@@ -1,0 +1,19 @@
+{
+  "folder": "templates",
+  "dateFormat": "YYYY-MM-DD",
+  "timeFormat": "HH:mm",
+  "templates": [
+    {
+      "name": "chat-temp",
+      "path": "templates/chat-temp.md"
+    },
+    {
+      "name": "chat-persistent",
+      "path": "templates/chat-persistent.md"
+    },
+    {
+      "name": "analysis",
+      "path": "templates/analysis.md"
+    }
+  ]
+}

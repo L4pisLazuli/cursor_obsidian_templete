@@ -1,0 +1,47 @@
+---
+description: 一時チャットノート（chats/temp）の作成・編集ルール
+globs: chats/temp/**/*.md
+alwaysApply: false
+---
+
+# Chat Temp
+
+`chats/temp/` は一時的なチャット記録用。簡潔でよい。
+
+## frontmatter 必須値
+
+- `tags`: `chat`, `temp` を含む
+- `source`: `cursor` | `gemini` | `chatgpt` | `manual`
+- `status`: 通常 `draft`
+
+## 自動生成（cursor app 運用）
+
+- 日常チャット開始時、**確認なし・無言**で temp ノートを自動生成する
+- 置き場所は常に `chats/temp/`、都度考えない
+- 命名は `YYYY-MM-DD-HHmmss`（トピックは promote 時に付与、入口では名前を悩まない）
+- frontmatter は下記テンプレを自動適用（手動記入不要）
+
+## ライフサイクル（保存しないなら消す）
+
+- temp は既定で **使い捨て**
+- セッション終了までに **promote 指示（「保存」「蓄積」「persistent に移して」等）がなければ削除**する
+- promote されたものだけが残る。中間の temp を貯めない
+- promote 完了後、元の temp ファイルが残っていれば即削除する
+
+## 棚卸しトリガー
+
+- **セッション終了時**: promote されなかった temp を削除
+- **週次**（またはユーザーが「temp を整理して」と指示したとき）: `chats/temp/` 内の `draft` かつ 7 日以上更新なしのノートを削除候補として一覧提示し、確認後に削除
+- temp が 5 件を超えたら、古いものから整理を提案する
+
+## 運用
+
+- 会話の要点を `## 概要` / `## メモ` に追記
+- promote 実行手順:
+  1. ファイルを `chats/persistent/` に移動
+  2. `tags` の `temp` を `persistent` に変更
+  3. `status` を `active` に更新
+  4. トピック名にリネーム（`YYYY-MM-DD-トピック`）
+  5. 必要なら見出し構造を整理
+
+テンプレート参照: `templates/chat-temp.md`

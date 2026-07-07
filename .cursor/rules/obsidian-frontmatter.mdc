@@ -1,0 +1,41 @@
+---
+description: Obsidian frontmatter スキーマと更新ルール
+globs: "**/*.md"
+alwaysApply: false
+---
+
+# Obsidian Frontmatter
+
+全 `.md` ファイルに以下の YAML frontmatter を付与・維持する。
+
+```yaml
+---
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+tags:
+  - chat
+  - temp          # または persistent / analysis
+source: cursor   # cursor | gemini | chatgpt | manual
+status: draft    # draft | active | archived
+aliases: []
+related: []
+---
+```
+
+## 更新ルール
+
+- 新規作成: `created` と `updated` を当日に設定
+- 編集時: `updated` を当日に更新（`created` は変更しない）
+- タグ: 小文字・ハイフン区切り（例: `cursor-rules`, `api-design`）
+- フォルダ種別タグ: `temp` / `persistent` / `analysis` のいずれかを必ず含む
+- `analysis/` のノートには `sources_updated`（参照元確認日）を付与する
+
+## Templater テンプレートとの整合
+
+| フォルダ | テンプレート |
+|---------|-------------|
+| `chats/temp/` | `templates/chat-temp.md` |
+| `chats/persistent/` | `templates/chat-persistent.md` |
+| `analysis/` | `templates/analysis.md` |
+
+Cursor Agent がノートを作成する場合、テンプレートと同一スキーマを手動で適用する。
