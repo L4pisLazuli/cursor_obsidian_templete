@@ -1,8 +1,8 @@
 # cursor_obsidian_vault
 
-Cursor Cloud Agent / Gemini / ChatGPT 等のチャット作業場兼 Obsidian ナレッジベース。
+Cursor Cloud Agent / Gemini / ChatGPT 等で使う、設計用プロンプト兼 Obsidian ナレッジベース。
 
-使用時はprivate推奨。クローン後は `profile/user.example.md` を `profile/user.md` にコピーして個人設定を記入する（初期設定では、`user.md` は Git 追跡対象外、privateにしたのを確認してから.gitignoreから削除）。
+この vault は **private 運用を基本方針** とする。クローン後は `profile/user.example.md` を `profile/user.md` にコピーして個人設定を記入する。現状は移行期間として `profile/user.md` が `.gitignore` に含まれているが、private 運用へ統一するタイミングで除外設定を外す予定。
 
 ## フォルダ構成
 
@@ -11,7 +11,7 @@ cursor_obsidian_vault/
 ├── .cursor/rules/          # Cursor Agent 向けルール
 ├── .obsidian/              # Obsidian 設定（workspace は Git 除外）
 ├── templates/              # Templater テンプレート
-├── profile/                # 本人属性（user.md は .gitignore）
+├── profile/                # 本人属性（private 運用前提の個人設定）
 ├── chats/
 │   ├── temp/               # 一時チャット（短命・削除可）
 │   └── persistent/         # 継続蓄積（長期保持・分析対象）
@@ -25,6 +25,8 @@ cursor_obsidian_vault/
 1. リポジトリをクローン
 2. Obsidian で「フォルダを vault として開く」→ このフォルダを選択
 3. `profile/user.example.md` を `profile/user.md` にコピーし、個人設定を記入
+   - private リポジトリ運用を前提に、このファイルも vault の一部として扱う
+   - 現在は移行期間のため `.gitignore` で除外されているが、将来的に削除予定
 4. Templater をインストール（下記 Obsidian セットアップ参照）
 5. Cursor でこのフォルダを開き、Agent が `.cursor/rules/` を自動参照
 
@@ -130,17 +132,19 @@ sources_updated: YYYY-MM-DD  # analysis のみ（参照元確認日）
 | `obsidian-frontmatter.mdc` | 全 `**/*.md` |
 | `git-workflow.mdc` | Git 関連ファイル・ルール変更時 |
 
-## Git 運用（public の場合）
+## Git 運用
 
 | 変更内容 | 運用 |
 |---------|------|
 | ノート追記・promote・analysis 追加 | `main` 直コミット |
 | `.cursor/rules/` の変更 | ブランチ + PR 推奨 |
 | フォルダ再構成 | ブランチ + PR 必須 |
+| private 運用方針の変更（`.gitignore` 含む） | ブランチ + PR 推奨 |
 
-- `.gitignore`: workspace 系・`.trash/`・`profile/user.md` を除外
+- `.gitignore`: workspace 系・`.trash/` を除外。`profile/user.md` は現状のみ移行対応として除外中
 - `.gitattributes`: LF 統一（Windows 対策）
-- コミット前: `profile/user.md` と `workspace.json` が含まれていないか確認
+- `profile/user.md`: private 運用前提で管理する。`.gitignore` から外す際は個人情報の棚卸しを行う
+- コミット前: `workspace.json` や不要なローカル設定が含まれていないか確認
 
 ## トリガー文言の例
 
