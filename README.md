@@ -2,7 +2,7 @@
 
 Cursor Cloud Agent / Gemini / ChatGPT 等で使う、設計用プロンプト兼 Obsidian ナレッジベース（vault テンプレート）。
 
-このリポジトリは **private 運用を前提** とするため、クローン後は `profile/user.example.md` を `profile/user.md` にコピーして個人設定を記入します。
+このリポジトリは **private 運用を前提** とする。クローン後は `profile/user.example.md` を `profile/user.md` にコピーして個人設定を記入する。
 
 ## フォルダ構成
 
@@ -149,8 +149,8 @@ sources_updated: YYYY-MM-DD  # analysis のみ（参照元確認日）
 
 - `.gitignore`: workspace 系・`.trash/` を除外
 - `.gitattributes`: LF 統一（Windows 対策）
-- `profile/user.md`: `.gitignore` 対象外。private 運用ではコミットして運用してOK（公開する場合は再度 ignore する）
-- コミット前: `profile/user.md` を含める/含めない方針がブレていないか確認、不要なローカル設定が含まれていないか確認
+- `profile/user.md`: `.gitignore` 対象外。**private 運用ではコミットして運用してよい**
+- コミット前: 機密情報（パスワード・API キー等）が含まれていないか、`workspace.json` が混入していないか確認
 
 ## トリガー文言の例
 

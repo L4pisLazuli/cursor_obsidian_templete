@@ -12,7 +12,7 @@ related: []
 
 # User Profile（テンプレート）
 
-`profile/user.md` としてコピーし、個人の文脈を記入する。`user.md` は `.gitignore` 対象のため public リポジトリに含まれない。
+`profile/user.md` としてコピーし、個人の文脈を記入する。**private 運用前提** のため `.gitignore` 対象外。コミットして運用してよい。
 
 ## 基本情報
 

@@ -27,7 +27,7 @@ alwaysApply: true
 - トピック語彙: **英語ケバブケース推奨**（例: `vault-design`, `api-research`）。日本語トピックも可だが、同一 vault 内で混在を最小化する
 - temp の自動生成時のみ `YYYY-MM-DD-HHmmss` を許容（promote 時にトピック名へリネーム）
 - 日本語で応答する
-- **この vault（cursor_obsidian）以外のディレクトリは編集しない**
+- **この vault（ワークスペースルート）以外のディレクトリは編集しない**
 
 ## ワークフロー
 
@@ -64,7 +64,8 @@ alwaysApply: true
 ### Git 運用
 
 - ブランチ・コミット・PR の基準は `git-workflow` ルールに従う
-- public リポジトリ: `profile/user.md` はコミットしない（`user.example.md` をコピーして使う）
+- **private 運用前提**: `profile/user.md` は `.gitignore` 対象外。コミットして運用してよい
+- リポジトリを public にする場合のみ: `profile/user.md` を再度 ignore し、個人情報が含まれないよう確認する
 
 ### assets
 

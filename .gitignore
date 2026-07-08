@@ -7,7 +7,10 @@
 # Obsidian ゴミ箱
 .trash/
 
-# 個人プロファイル（`profile/user.example.md` をコピーして `user.md` として使う）
+# 個人プロファイル
+# profile/user.md は private 運用前提のため追跡対象（user.example.md をコピーして使う）
+# リポジトリを public にする場合のみ、下記のように ignore を追加すること
+# profile/user.md
 
 
 # OS 固有
