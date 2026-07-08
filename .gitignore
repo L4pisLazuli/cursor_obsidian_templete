@@ -8,7 +8,7 @@
 .trash/
 
 # 個人プロファイル（`profile/user.example.md` をコピーして `user.md` として使う）
-profile/user.md
+
 
 # OS 固有
 .DS_Store
