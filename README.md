@@ -1,4 +1,4 @@
-# cursor_obsidian_templete
+# cursor_obsidian_template
 
 Cursor Cloud Agent / Gemini / ChatGPT 等で使う、設計用プロンプト兼 Obsidian ナレッジベース（vault テンプレート）。
 
